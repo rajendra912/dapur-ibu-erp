@@ -3,7 +3,7 @@ package service
 import (
 	"database/sql"
 
-	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/repository"
+	"github.com/rajendra912/dapur-ibu-erp/internal/repository"
 
 	"github.com/shopspring/decimal"
 )

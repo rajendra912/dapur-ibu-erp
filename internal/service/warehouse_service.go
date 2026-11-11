@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"errors"
 
-	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/models"
-	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/repository"
+	"github.com/rajendra912/dapur-ibu-erp/internal/models"
+	"github.com/rajendra912/dapur-ibu-erp/internal/repository"
 
 	"github.com/shopspring/decimal"
 )
