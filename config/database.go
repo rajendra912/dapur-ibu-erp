@@ -11,8 +11,10 @@ import (
 var DB *sql.DB
 
 func ConnectDB() {
-	// DSN (Data Source Name) untuk Laragon: root tanpa password
-	dsn := "root:@tcp(127.0.0.1:3306)/dapur_ibu_db?parseTime=true"
+	// DSN (Data Source Name) untuk Laragon: root tanpa password.
+	// loc=Local wajib agar DATETIME (cutoff_date) dibaca/ditulis memakai zona
+	// waktu laptop, sehingga perbandingan dengan NOW() MySQL tetap konsisten.
+	dsn := "root:@tcp(127.0.0.1:3306)/dapur_ibu_db?parseTime=true&loc=Local"
 
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
