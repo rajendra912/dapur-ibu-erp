@@ -3,7 +3,7 @@ package repository
 import (
 	"database/sql"
 
-	"dapur-ibu-erp/internal/models"
+	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/models"
 )
 
 func ListUnits(db *sql.DB) ([]models.Unit, error) {

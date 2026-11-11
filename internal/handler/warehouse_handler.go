@@ -5,12 +5,12 @@ import (
 	"net/http"
 	"strconv"
 
-	"dapur-ibu-erp/config"
-	"dapur-ibu-erp/internal/models"
-	"dapur-ibu-erp/internal/repository"
-	"dapur-ibu-erp/internal/service"
+	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/models"
+	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/repository"
+	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/service"
 
 	"github.com/gorilla/mux"
+	"github.com/rajendra912/dapur-ibu-erp/config"
 )
 
 // Prefix "wh" supaya tidak bentrok dengan helper milik teman di package handler.
