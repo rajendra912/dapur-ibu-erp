@@ -1,4 +1,4 @@
-module dapur-ibu-erp
+module github.com/rajendra912/dapur-ibu-erp
 
 go 1.26.6
 
