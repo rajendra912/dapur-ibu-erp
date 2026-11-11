@@ -1,4 +1,3 @@
-[pedoman_pengembangan_erp_dapur_ibu (1).md](https://github.com/user-attachments/files/34669135/pedoman_pengembangan_erp_dapur_ibu.1.md)
 # 🍲 Dapur Ibu ERP - Sistem Perencanaan Produksi Katering (Kelompok 7)
 
 Selamat datang di repositori resmi proyek **ERP Katering "Dapur Ibu"**. Sistem ini dirancang untuk menangani operasional katering berskala besar (ratusan hingga ribuan porsi), mulai dari pencatatan pesanan pelanggan, manajemen resep bertingkat (*Multi-level Bill of Materials*), penguncian pesanan otomatis (*Cutoff H-2*), perhitungan daftar belanja pasar (*MRP Exploding BOM*), hingga evaluasi Harga Pokok Produksi (HPP) menggunakan metode *Weighted Moving Average*.
