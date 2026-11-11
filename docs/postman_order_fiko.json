@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "Dapur Ibu - Modul Order & Cutoff (Fiko)",
+    "description": "Koleksi Postman untuk menguji endpoint pesanan dan cutoff otomatis H-2. Jalankan dari atas ke bawah.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "orderId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "1. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/health",
+        "description": "Memastikan server dan koneksi database hidup."
+      }
+    },
+    {
+      "name": "2. Buat Pesanan",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"order_num\": \"ORD-20261120-001\",\n  \"customer\": \"Bu Sri\",\n  \"event_date\": \"2026-11-20\",\n  \"status\": \"CONFIRMED\",\n  \"items\": [\n    { \"menu_item_id\": 6, \"portions\": 100, \"selling_price\": 35000 },\n    { \"menu_item_id\": 7, \"portions\": 50, \"selling_price\": 40000 }\n  ]\n}"
+        },
+        "url": "{{baseUrl}}/api/orders",
+        "description": "cutoff_date dihitung otomatis = event_date - 1 hari pukul 00:00. Sesuaikan menu_item_id dengan data items bertipe MENU di database."
+      }
+    },
+    {
+      "name": "3. Daftar Pesanan",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/orders?status=DRAFT&q=Bu&limit=50",
+        "description": "Filter opsional: status, event_date, q (nama pemesan / nomor pesanan), limit."
+      }
+    },
+    {
+      "name": "4. Detail Pesanan",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/orders/{{orderId}}"
+      }
+    },
+    {
+      "name": "5. Ubah Pesanan (porsi)",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"items\": [\n    { \"menu_item_id\": 6, \"portions\": 120, \"selling_price\": 35000 }\n  ]\n}"
+        },
+        "url": "{{baseUrl}}/api/orders/{{orderId}}",
+        "description": "Akan gagal 400 jika status LOCKED/DONE atau sudah melewati cutoff_date."
+      }
+    },
+    {
+      "name": "6. Rekap Porsi per Tanggal Acara",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/orders/summary?event_date=2026-11-20&status=LOCKED",
+        "description": "Rekap total porsi per menu. Bahan agregasi Level 0 untuk modul MRP."
+      }
+    },
+    {
+      "name": "7. Picu Cutoff Manual (demo)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{baseUrl}}/api/cron/cutoff",
+        "description": "Mengunci semua pesanan DRAFT/CONFIRMED yang cutoff_date <= sekarang dan menyimpan snapshot HPP per porsi. Idempotent."
+      }
+    },
+    {
+      "name": "8. Hapus Pesanan",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/orders/{{orderId}}",
+        "description": "Hanya berhasil jika pesanan belum LOCKED/DONE dan belum melewati cutoff."
+      }
+    }
+  ]
+}
