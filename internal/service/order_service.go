@@ -4,12 +4,11 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"math"
 	"strings"
 	"time"
 
-	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/models"
-	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/repository"
+	"github.com/rajendra912/dapur-ibu-erp/internal/models"
+	"github.com/rajendra912/dapur-ibu-erp/internal/repository"
 
 	"github.com/go-sql-driver/mysql"
 )
@@ -34,7 +33,6 @@ func invalid(format string, args ...any) error {
 
 const (
 	dateLayout     = "2006-01-02"
-	maxBOMDepth    = 6
 	defaultLimit   = 200
 	maxLimit       = 1000
 	dateTimeLayout = "2006-01-02 15:04:05"
@@ -78,10 +76,6 @@ func IsEditable(o models.Order, now time.Time) bool {
 		return false
 	}
 	return now.Before(o.CutoffDate)
-}
-
-func round2(v float64) float64 {
-	return math.Round(v*100) / 100
 }
 
 func dateOnly(t time.Time) time.Time {

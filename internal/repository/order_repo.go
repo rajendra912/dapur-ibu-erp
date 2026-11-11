@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/models"
+	"github.com/rajendra912/dapur-ibu-erp/internal/models"
 )
 
 // ordQuerier membuat fungsi repository bisa dipakai untuk *sql.DB maupun *sql.Tx.

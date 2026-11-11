@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"[github.com/rajendra912/dapur-ibu-erp/](https://github.com/rajendra912/dapur-ibu-erp/)internal/service"
+	"github.com/rajendra912/dapur-ibu-erp/internal/service"
 )
 
 // StartCutoffWorker menjalankan penjadwal penguncian pesanan otomatis (Cutoff H-2).
