@@ -36,7 +36,11 @@ func main() {
 	handler.RegisterOrderRoutes(r)
 	go worker.StartCutoffWorker(config.DB)
 
-	// 6. Nyalakan Server
+	// 6. Modul Recipe & Kitchen Engine (Syarif)
+	recipeSvc := service.NewRecipeService(repository.NewRecipeRepo(config.DB))
+	handler.NewRecipeHandler(recipeSvc).RegisterRoutes(r, nil) // nil = tanpa RBAC dulu
+
+	// 7. Nyalakan Server
 	port := ":8080"
 	log.Printf("Server siap menerima pesanan di http://localhost%s", port)
 	log.Fatal(http.ListenAndServe(port, r))
